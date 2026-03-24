@@ -8,16 +8,19 @@ load_dotenv()
 app = Flask(__name__)
 
 # --- Register Routes ---
-# Routes will be imported here as we build them
-# from routes.training_plan import training_plan_bp
-# from routes.nutrition import nutrition_bp
-# from routes.injury import injury_bp
-# from routes.chat import chat_bp
+from routes.training_plan import training_plan_bp
+from routes.validate_goal import validate_goal_bp
+from routes.nutrition import nutrition_bp
+from routes.injury import injury_bp
+from routes.chat import chat_bp
+from routes.groq_routes import groq_bp
 
-# app.register_blueprint(training_plan_bp)
-# app.register_blueprint(nutrition_bp)
-# app.register_blueprint(injury_bp)
-# app.register_blueprint(chat_bp)
+app.register_blueprint(groq_bp)
+app.register_blueprint(training_plan_bp)
+app.register_blueprint(validate_goal_bp)
+app.register_blueprint(nutrition_bp)
+app.register_blueprint(injury_bp)
+app.register_blueprint(chat_bp)
 
 # Health check — used by Docker to verify the service is running
 @app.route("/health", methods=["GET"])
